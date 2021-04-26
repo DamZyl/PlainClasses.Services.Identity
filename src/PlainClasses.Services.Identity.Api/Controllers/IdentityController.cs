@@ -24,7 +24,7 @@ namespace PlainClasses.Services.Identity.Api.Controllers
         {
             var token = await _mediator.Send(new LoginCommand(request.PersonalNumber, request.Password));
 
-            return Created(string.Empty, token);
+            return Created(string.Empty, token.Token);
         }
     }
 }

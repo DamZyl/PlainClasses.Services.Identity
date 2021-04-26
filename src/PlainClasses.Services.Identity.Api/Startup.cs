@@ -31,6 +31,7 @@ namespace PlainClasses.Services.Identity.Api
             services.AddJwtConfiguration(Configuration, Consts.JwtConfigurationSection);
             services.AddControllers();
             services.AddSwagger();
+           
             // services.AddProblemDetails(x =>
             // {
             //     x.Map<InvalidCommandException>(ex => new InvalidCommandProblemDetails(ex));
@@ -58,7 +59,7 @@ namespace PlainClasses.Services.Identity.Api
             //     app.UseProblemDetails();
             // }
 
-            app.UseHttpsRedirection();
+            // app.UseHttpsRedirection();
 
             app.UseRouting();
 

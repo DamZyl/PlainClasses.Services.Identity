@@ -8,6 +8,7 @@ using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using PlainClasses.Services.Identity.Application.Commands;
 using PlainClasses.Services.Identity.Application.Configurations.Options;
+using PlainClasses.Services.Identity.Application.Dto;
 
 namespace PlainClasses.Services.Identity.Application
 {
@@ -20,7 +21,7 @@ namespace PlainClasses.Services.Identity.Application
             _jwtOption = jwtOption;
         }
 
-        public string CreateToken(Guid userId, string fullName, IEnumerable<AuthDto> auths)
+        public string CreateToken(Guid userId, string fullName, List<AuthDto> auths)
         {
             var claims = new List<Claim>
             {

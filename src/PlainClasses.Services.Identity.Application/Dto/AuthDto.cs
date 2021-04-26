@@ -1,6 +1,6 @@
 using System;
 
-namespace PlainClasses.Services.Identity.Application.Commands
+namespace PlainClasses.Services.Identity.Application.Dto
 {
     public class AuthDto
     {
