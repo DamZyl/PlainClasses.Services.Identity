@@ -1,4 +1,4 @@
-using PlainClasses.Services.Identity.Application.Configurations.Dispatchers;
+using MicroserviceLibrary.Application.Configurations.Dispatchers;
 
 namespace PlainClasses.Services.Identity.Application.Commands
 {

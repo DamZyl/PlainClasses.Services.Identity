@@ -25,5 +25,11 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
   </ItemGroup>
+  
+  <ItemGroup>
+    <Reference Include="MicroserviceLibrary, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
+      <HintPath>..\PlainClasses.Services.Identity.Domain\bin\Debug\netcoreapp3.1\MicroserviceLibrary.dll</HintPath>
+    </Reference>
+  </ItemGroup>
 
 </Project>

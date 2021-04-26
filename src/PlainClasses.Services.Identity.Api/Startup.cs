@@ -1,19 +1,15 @@
 using System;
-using Autofac;
 using Autofac.Extensions.DependencyInjection;
 using Hellang.Middleware.ProblemDetails;
+using MicroserviceLibrary.Api.Configurations.Extensions;
+using MicroserviceLibrary.Api.Utils;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using PlainClasses.Services.Identity.Api.Configurations.Extensions;
-using PlainClasses.Services.Identity.Api.Configurations.Validations;
 using PlainClasses.Services.Identity.Api.Utils;
-using PlainClasses.Services.Identity.Application.Configurations.Validattion;
-using PlainClasses.Services.Identity.Domain.SharedKernels;
 using PlainClasses.Services.Identity.Infrastructure.Databases;
-using PlainClasses.Services.Identity.Infrastructure.IoC;
 
 namespace PlainClasses.Services.Identity.Api
 {
@@ -35,19 +31,10 @@ namespace PlainClasses.Services.Identity.Api
             services.AddControllers();
             services.AddSwagger();
            
-            services.AddProblemDetails(x =>
-            {
-                x.Map<InvalidCommandException>(ex => new InvalidCommandProblemDetails(ex));
-                x.Map<BusinessRuleValidationException>(ex => new BusinessRuleValidationExceptionProblemDetails(ex));
-            });
+            services.AddErrorHandler();
             
-            var builder = new ContainerBuilder();
-            
-            builder.Populate(services);
-            builder.RegisterModule(new InfrastructureModule(Configuration));
-            
-            var container = builder.Build();
-            return new AutofacServiceProvider(container); 
+            return new AutofacServiceProvider(AutofacServiceExtension.CreateContainer(services, Configuration, 
+                AssembliesConst.MigrationAssembly, AssembliesConst.ApplicationAssembly)); 
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)

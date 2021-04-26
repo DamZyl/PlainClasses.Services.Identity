@@ -1,11 +1,12 @@
 using System.Threading;
 using System.Threading.Tasks;
 using Dapper;
-using PlainClasses.Services.Identity.Application.Configurations.Data;
-using PlainClasses.Services.Identity.Application.Configurations.Dispatchers;
-using PlainClasses.Services.Identity.Application.Dto;
+using MicroserviceLibrary.Application.Auths;
+using MicroserviceLibrary.Application.Configurations.Data;
+using MicroserviceLibrary.Application.Configurations.Dispatchers;
+using MicroserviceLibrary.Application.Dto;
+using MicroserviceLibrary.Application.Utils;
 using PlainClasses.Services.Identity.Application.Rules;
-using PlainClasses.Services.Identity.Application.Utils;
 
 namespace PlainClasses.Services.Identity.Application.Commands
 {

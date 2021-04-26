@@ -9,4 +9,10 @@
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="3.1.14" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Reference Include="MicroserviceLibrary, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
+      <HintPath>bin\Debug\netcoreapp3.1\MicroserviceLibrary.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
 </Project>

@@ -1,5 +1,6 @@
-using PlainClasses.Services.Identity.Application.Dto;
-using PlainClasses.Services.Identity.Domain.SharedKernels;
+using MicroserviceLibrary.Application.Auths;
+using MicroserviceLibrary.Application.Dto;
+using MicroserviceLibrary.Domain.SharedKernels;
 
 namespace PlainClasses.Services.Identity.Application.Rules
 {

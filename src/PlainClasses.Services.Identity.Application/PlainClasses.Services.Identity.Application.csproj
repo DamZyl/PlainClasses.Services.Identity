@@ -13,5 +13,11 @@
     <PackageReference Include="FluentValidation" Version="10.0.4" />
     <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="3.1.14" />
   </ItemGroup>
+  
+  <ItemGroup>
+    <Reference Include="MicroserviceLibrary, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
+      <HintPath>..\PlainClasses.Services.Identity.Domain\bin\Debug\netcoreapp3.1\MicroserviceLibrary.dll</HintPath>
+    </Reference>
+  </ItemGroup>
 
 </Project>

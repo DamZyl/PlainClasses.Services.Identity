@@ -1,6 +1,6 @@
 using System;
 using System.Collections.Generic;
-using PlainClasses.Services.Identity.Domain.SharedKernels;
+using MicroserviceLibrary.Domain.SharedKernels;
 
 namespace PlainClasses.Services.Identity.Domain.Models
 {
