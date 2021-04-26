@@ -1,13 +1,17 @@
 using System;
 using Autofac;
 using Autofac.Extensions.DependencyInjection;
+using Hellang.Middleware.ProblemDetails;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using PlainClasses.Services.Identity.Api.Configurations.Extensions;
+using PlainClasses.Services.Identity.Api.Configurations.Validations;
 using PlainClasses.Services.Identity.Api.Utils;
+using PlainClasses.Services.Identity.Application.Configurations.Validattion;
+using PlainClasses.Services.Identity.Domain.SharedKernels;
 using PlainClasses.Services.Identity.Infrastructure.Databases;
 using PlainClasses.Services.Identity.Infrastructure.IoC;
 
@@ -22,7 +26,6 @@ namespace PlainClasses.Services.Identity.Api
             Configuration = configuration;
         }
         
-        // This method gets called by the runtime. Use this method to add services to the container.
         public IServiceProvider ConfigureServices(IServiceCollection services)
         {
             services.AddSqlConfiguration(Configuration, Consts.DbConfigurationSection);
@@ -32,11 +35,11 @@ namespace PlainClasses.Services.Identity.Api
             services.AddControllers();
             services.AddSwagger();
            
-            // services.AddProblemDetails(x =>
-            // {
-            //     x.Map<InvalidCommandException>(ex => new InvalidCommandProblemDetails(ex));
-            //     x.Map<BusinessRuleValidationException>(ex => new BusinessRuleValidationExceptionProblemDetails(ex));
-            // });
+            services.AddProblemDetails(x =>
+            {
+                x.Map<InvalidCommandException>(ex => new InvalidCommandProblemDetails(ex));
+                x.Map<BusinessRuleValidationException>(ex => new BusinessRuleValidationExceptionProblemDetails(ex));
+            });
             
             var builder = new ContainerBuilder();
             
@@ -47,17 +50,16 @@ namespace PlainClasses.Services.Identity.Api
             return new AutofacServiceProvider(container); 
         }
 
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
             }
-            // else
-            // {
-            //     app.UseProblemDetails();
-            // }
+            else
+            {
+                app.UseProblemDetails();
+            }
 
             // app.UseHttpsRedirection();
 

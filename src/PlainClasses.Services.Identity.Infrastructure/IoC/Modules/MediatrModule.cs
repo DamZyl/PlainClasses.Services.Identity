@@ -1,7 +1,9 @@
 using System.Reflection;
 using Autofac;
+using FluentValidation;
 using MediatR;
 using MediatR.Pipeline;
+using PlainClasses.Services.Identity.Application.Configurations.Validattion;
 using PlainClasses.Services.Identity.Infrastructure.Utils;
 
 namespace PlainClasses.Services.Identity.Infrastructure.IoC.Modules
@@ -16,7 +18,7 @@ namespace PlainClasses.Services.Identity.Infrastructure.IoC.Modules
             {
                 typeof(IRequestHandler<,>),
                 typeof(INotificationHandler<>),
-                //typeof(IValidator<>)
+                typeof(IValidator<>)
             };
             
             foreach (var mediatrOpenType in mediatrOpenTypes)
@@ -36,7 +38,7 @@ namespace PlainClasses.Services.Identity.Infrastructure.IoC.Modules
                 return t => c.Resolve(t);
             });
             
-            //builder.RegisterGeneric(typeof(CommandValidationBehavior<,>)).As(typeof(IPipelineBehavior<,>));
+            builder.RegisterGeneric(typeof(CommandValidationBehavior<,>)).As(typeof(IPipelineBehavior<,>));
         }
     }
 }

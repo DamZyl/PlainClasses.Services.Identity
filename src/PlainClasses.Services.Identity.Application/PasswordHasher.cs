@@ -1,6 +1,7 @@
 using System;
 using System.Linq;
 using System.Security.Cryptography;
+using PlainClasses.Services.Identity.Application.Rules;
 using PlainClasses.Services.Identity.Application.Utils;
 
 namespace PlainClasses.Services.Identity.Application
@@ -20,7 +21,7 @@ namespace PlainClasses.Services.Identity.Application
         {
             var parts = hash.Split('.', 3);
 
-           // ExceptionHelper.CheckRule(new SplitPasswordToPartLengthRule(parts));
+           ExceptionHelper.CheckRule(new SplitPasswordToPartLengthRule(parts));
 
             var iterations = Convert.ToInt32(parts[0]);
             var salt = Convert.FromBase64String(parts[1]);

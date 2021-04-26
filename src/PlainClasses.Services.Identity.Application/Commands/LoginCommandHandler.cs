@@ -4,6 +4,8 @@ using Dapper;
 using PlainClasses.Services.Identity.Application.Configurations.Data;
 using PlainClasses.Services.Identity.Application.Configurations.Dispatchers;
 using PlainClasses.Services.Identity.Application.Dto;
+using PlainClasses.Services.Identity.Application.Rules;
+using PlainClasses.Services.Identity.Application.Utils;
 
 namespace PlainClasses.Services.Identity.Application.Commands
 {
@@ -36,7 +38,7 @@ namespace PlainClasses.Services.Identity.Application.Commands
             
             var person = await connection.QuerySingleOrDefaultAsync<PersonDto>(sql, new { request.PersonalNumber });
             
-            //ExceptionHelper.CheckRule(new PersonDoesNotExistRule(person));
+            ExceptionHelper.CheckRule(new PersonDoesNotExistRule(person));
             
             const string sqlAuths = "SELECT " +
                                     "[PersonAuth].[Id], " +
@@ -49,7 +51,7 @@ namespace PlainClasses.Services.Identity.Application.Commands
 
             person.PersonAuths = auths.AsList();
 
-            // ExceptionHelper.CheckRule(new InvalidCredentialRule(_passwordHasher, person, request.Password));
+            ExceptionHelper.CheckRule(new InvalidCredentialRule(_passwordHasher, person, request.Password));
             
             return new ReturnLoginViewModel
                 {
