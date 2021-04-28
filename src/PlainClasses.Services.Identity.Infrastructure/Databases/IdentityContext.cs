@@ -1,4 +1,3 @@
-using System.Reflection;
 using MicroserviceLibrary.Application.Configurations.Options;
 using MicroserviceLibrary.Infrastructure.Databases;
 using Microsoft.EntityFrameworkCore;
@@ -16,11 +15,6 @@ namespace PlainClasses.Services.Identity.Infrastructure.Databases
 
         #endregion
         
-        public IdentityContext(IOptions<SqlOption> options) : base(options) { }
-        
-        protected override void OnModelCreating(ModelBuilder modelBuilder)
-        {
-            modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
-        }
+        public IdentityContext(IOptions<SqlOption> options) : base(options, "PlainClasses.Services.Identity.Api") { }
     }
 }
